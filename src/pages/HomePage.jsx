@@ -3,23 +3,30 @@ import ZodiacSignBox from "../components/ZodiacSignBox";
 import BodyMenuItem from "../components/BodyMenuItem";
 import Footer from "../components/Footer";
 import { TITLE } from "../utils/const";
+import ErrorPage from "./ErrorPage";
 
 const HomePage = () => {
   const [data, setData] = useState(null);
+  const [isLoading, setIsLoading] = useState(false);
+  const [err, setErr] = useState(null);
 
   useEffect(() => {
     const fetchData = async () => {
       try {
         const response = await fetch("http://localhost:8081/horoscope");
-        if (!response.ok) throw new Error("internet not gud");
+        if (!response.ok) throw { status: response.status, message: response.statusText };
         const result = await response.json();
         setData(result);
       } catch (err) {
-        console.log(err);
+        setErr(err)
       }
     };
     fetchData();
   }, []);
+
+  if (err !== null)
+    return <ErrorPage err={err} />
+
   return (
     <div className="w-full h-full flex justify-center items-center bg-ultimate-background">
       <div className="bg-container w-full py-2 flex flex-col justify-center items-center min-h-screen max-w-screen-2xl">
