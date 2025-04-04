@@ -4,6 +4,7 @@ import BodyMenuItem from "../components/BodyMenuItem";
 import Footer from "../components/Footer";
 import { TITLE } from "../utils/const";
 import ErrorPage from "./ErrorPage";
+import LoadingPage from "./LoadingPage";
 
 const HomePage = () => {
   const [data, setData] = useState(null);
@@ -13,10 +14,12 @@ const HomePage = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
+        setIsLoading(true);
         const response = await fetch("http://localhost:8081/horoscope");
         if (!response.ok) throw { status: response.status, message: response.statusText };
         const result = await response.json();
         setData(result);
+        setIsLoading(false)
       } catch (err) {
         setErr(err)
       }
@@ -26,6 +29,9 @@ const HomePage = () => {
 
   if (err !== null)
     return <ErrorPage err={err} />
+
+  if (isLoading)
+    return <LoadingPage />
 
   return (
     <div className="w-full h-full flex justify-center items-center bg-ultimate-background">

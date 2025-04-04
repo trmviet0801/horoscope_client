@@ -8,7 +8,7 @@ const RouterWrapper = () => {
             <Routes>
                 <Route path="/" element={<HomePage />}></Route>
 
-                <Route path="*" element={<ErrorPage />} />
+                <Route path="*" element={<ErrorPage    />} />
             </Routes>
         </Router>
     )
