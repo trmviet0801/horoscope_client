@@ -1,8 +1,9 @@
 import { useEffect, useState } from "react";
+import { NavLink } from "react-router-dom";
 import ZodiacSignBox from "../components/ZodiacSignBox";
 import BodyMenuItem from "../components/BodyMenuItem";
 import Footer from "../components/Footer";
-import { TITLE } from "../utils/const";
+import { HOME_URL, TITLE } from "../utils/const";
 import ErrorPage from "./ErrorPage";
 import LoadingPage from "./LoadingPage";
 
@@ -15,7 +16,7 @@ const HomePage = () => {
     const fetchData = async () => {
       try {
         setIsLoading(true);
-        const response = await fetch("http://localhost:8081/horoscope");
+        const response = await fetch(HOME_URL);
         if (!response.ok) throw { status: response.status, message: response.statusText };
         const result = await response.json();
         setData(result);
@@ -35,9 +36,9 @@ const HomePage = () => {
 
   return (
     <div className="w-full h-full flex justify-center items-center bg-ultimate-background">
-      <div className="bg-container w-full py-2 flex flex-col justify-center items-center min-h-screen max-w-screen-2xl">
-        <div className="m-2 w-full">
-          <h1 className="text-gold font-bold text-center mt-4">{TITLE}</h1>
+      <div className="bg-container w-full py-2 flex flex-col  items-center min-h-screen max-w-screen-4xl">
+        <div className="m-2 w-full flex flex-col">
+          <h1 className="text-gold font-bold text-center mt-4"><NavLink to={'/'}>{TITLE}</NavLink></h1>
         </div>
         <div className="w-full bg-small-container px-4 pt-8 my-8 block pb-10">
           <h1 className="text-center text-gold font-bold text-2xl mt-8">
@@ -54,6 +55,7 @@ const HomePage = () => {
                 startDay={item.startDay}
                 endDay={item.endDay}
                 imgSrc={item.image}
+                id={item.id}
               />
             ))}
           </div>
@@ -64,12 +66,14 @@ const HomePage = () => {
             title="Tử vi hằng ngày"
             description="Nhận tử vi hàng ngày cá nhân hóa và những hướng dẫn vũ trụ dành cho bạn."
             button="Đọc ngay"
+            url={"#"}
           />
           <BodyMenuItem
             imgSrc="yellow_star.png"
             title="Tương thích tình yêu"
             description="Khám phá cách mà cung hoàng đạo của bạn phù hợp với những người khác trong tình yêu và các mối quan hệ."
             button="Kiểm tra ngay"
+            url="/love"
           />
         </div>
         <Footer />
