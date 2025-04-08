@@ -1,4 +1,4 @@
-const Category = ({data}) => {
+const Category = () => {
     return (
         <div className="w-full bg-container-box flex flex-col gap-2">
             

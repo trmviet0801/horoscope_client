@@ -34,6 +34,7 @@ const OverviewPage = () => {
         setCategories(secondResult);
         setIsLoading(false);
       } catch (err) {
+        console.log(err)
         setIsErr(true);
       }
     };

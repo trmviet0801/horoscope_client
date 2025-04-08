@@ -25,6 +25,7 @@ const LovePage = () => {
         setSigns(result);
         setIsLoading(false);
       } catch (e) {
+        console.log(e)
         setIsErr(true);
       }
     };

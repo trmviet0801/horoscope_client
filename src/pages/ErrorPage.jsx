@@ -1,6 +1,6 @@
 import { NavLink } from "react-router-dom";
 
-const ErrorPage = ({err}) => {
+const ErrorPage = () => {
     return(
         <div className="w-full min-h-screen bg-container flex flex-col justify-center items-center p-4">
             <img src="../../public/blue_star.png" width={200} />
