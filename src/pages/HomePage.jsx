@@ -64,7 +64,7 @@ const HomePage = () => {
           <BodyMenuItem
             imgSrc="blue_star.png"
             title="Tử vi hằng ngày"
-            description="Nhận tử vi hàng ngày cá nhân hóa và những hướng dẫn vũ trụ dành cho bạn."
+            description="Bài viết tử vi hàng ngày cá nhân hóa và những hướng dẫn vũ trụ dành cho bạn."
             button="Đọc ngay"
             url={"/post"}
           />
